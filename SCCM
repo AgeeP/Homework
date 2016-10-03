@@ -11,3 +11,5 @@
  $Schedule = New-CMSchedule -DurationCount 1 -DurationInterval Hours -RecurCount 3 -DayOfMonth 4 -Start ([Datetime]”3:00″)
  $Collection = Get-CMDeviceCollection -Name “Your Collection Name”
 New-CMMaintenanceWindow -CollectionID $Collection.CollectionID -Schedule $Schedule -Name “Your Schedule Name”
+
+Changes 9:45!
