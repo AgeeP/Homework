@@ -1,0 +1,13 @@
+#Import SCCM Module
+ Import-Module $env:SMS_ADMIN_UI_PATH.Replace(“bini386″,”binconfigurationmanager.psd1”)
+
+#Get SiteCode
+ $SiteCode = Get-PSDrive -PSProvider CMSITE
+
+# Set Location to SCCM
+ Set-Location “$($SiteCode.Name):”
+
+#Occurs Fourth day of every 3 months effective the time you create it at 3:00 AM
+ $Schedule = New-CMSchedule -DurationCount 1 -DurationInterval Hours -RecurCount 3 -DayOfMonth 4 -Start ([Datetime]”3:00″)
+ $Collection = Get-CMDeviceCollection -Name “Your Collection Name”
+New-CMMaintenanceWindow -CollectionID $Collection.CollectionID -Schedule $Schedule -Name “Your Schedule Name”
